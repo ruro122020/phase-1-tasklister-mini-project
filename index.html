@@ -1,18 +1,31 @@
 <!DOCTYPE HTML>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Flatiron Task Lister</title>
   <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
   <div id="main-content">
     <h1>Task Lister Lite™️</h1>
 
-    <form id="create-task-form" action="" method="POST">
-      <label for="new-task-description">Task description:</label>
+    <form id="create-task-form" action="#" method="POST">
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" name="tast-start" />
+
+      <label for="new-task-description">Task:</label>
       <input type="text" id="new-task-description" name="new-task-description" placeholder="description">
-      <input type="submit" value="Create New Task">
+
+      <select>
+        <option value="red">red</option>
+        <option value="yellow">yellow</option>
+        <option value="green">green</option>
+      </select>
+      <div id='submit'>
+        <input type="submit" value="Create New Task">
+      </div>
     </form>
 
     <div id="list">
@@ -25,4 +38,5 @@
   </div>
 
 </body>
+
 </html>
