@@ -1,20 +1,18 @@
  /*
-  1. get access to the due date, task, and priority values
+  1. create an li element for each task
   2. on click add the li element to the ul
   3. create an li element and add:
-        -text input value
+        -span element with the task value
         -delete btn
-        -edit btn
-        -due date 
-        -assign background color based on priority
-  4. based on the priority color, set the li's from red to yellow to green
+        -edit btn      
   */
 
 document.addEventListener("DOMContentLoaded", (e) => {
   // your code here
   e.preventDefault()
   let task = document.getElementById('new-task-description')
-  let submit = document.getElementById('submit').childNodes[1]
+  let submit = document.querySelector('#create-task-form #submit input')
+
   let ul = document.querySelector('ul')
   //this liArray is to know whether or not there are exisiting li's and to iterate 
   //through them to know what number id to set the new li element to when a task is 
@@ -24,7 +22,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   submit.addEventListener('click', (e)=>{
     //each li has to have it's own id number
     e.preventDefault()
-    let count = 0
+    let count = 1
      //create element
     let li = document.createElement('li')
     let deleteBtn = document.createElement('button')
@@ -35,17 +33,21 @@ document.addEventListener("DOMContentLoaded", (e) => {
     deleteBtn.textContent = ' x '
     editBtn.textContent = ' edit '
     /**
-     * We just want to iterate through the li's to get the number id if li's already
-     * exist and set the new li's with an id number
+     * we want to set an individual id for each li
      */
     //check if there is any li's
     //if there is no li's add an id to the li and set it to the count number
-    //if li's already exist, loop through the existing li's
-    //when you iterate through the li's, get the id number and add it to the count
-    //add 1 to the count then
-    //set the new count number to the new li id
-    //add the li to the array
-
+    if(liArray.length === 0){
+      //add an id to the li element
+      li.id = count
+      //add li to liArray
+      liArray.push(li)
+    }else{
+      count = liArray.length + 1
+      li.id = count
+      //add new li to liArray
+      liArray.push(li)
+    }
     //append elements
     li.appendChild(spanTask)
     li.appendChild(deleteBtn)
@@ -73,39 +75,39 @@ function handleEdit(element, siblingElement){
    --add the new text to the span 
    --remove the input and save button
   */
- //create an input and save button
+  //create an input and save button
   let editInput = document.createElement('input')
   let saveBtn = document.createElement('button')
-
-  let span = document.querySelector('span')
+  //get the li id
+  let elementId = element.id
+  //get the span element from the li
+  let span = document.getElementById(elementId).children[0]
   //set edit input type
   editInput.setAttribute('type','text')
   saveBtn.textContent = ' save '
   //places the save btn before the delete btn
   siblingElement.insertAdjacentElement("beforebegin", saveBtn)
-  //places the input before the savebtn
+  //places the editInput before the savebtn
   saveBtn.insertAdjacentElement("beforebegin", editInput)
   //get the value of span
   let spanValue = span.textContent
   //place span value inside input
   editInput.value = spanValue
-  //reset the value of the span
-  
+  //remove the original span
+  span.remove()
+  //save changes
   saveBtn.addEventListener('click',()=>{
-    /*
-    get the new value of the input
-    create a span element
-    set the value of the span element to the new value from our input
-    remove the edit input and save btn
-    append it to the li
-    */
+   //get the new value from the input
     let valueInput = editInput.value
+    //create a new span element 
     let span = document.createElement('span')
+    //add the new value from the input to the span element
     span.textContent = `${valueInput} `
+    //add the created span before the delete button
     siblingElement.insertAdjacentElement('beforebegin', span)
+    //remove the edit input and saved button
     editInput.remove()
     saveBtn.remove()
-    
   })
 }
 
