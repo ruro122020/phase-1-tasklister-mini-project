@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   // your code here
   e.preventDefault()
   let task = document.getElementById('new-task-description')
-  let submit = document.querySelector('#create-task-form #submit input')
   let form = document.querySelector('form')
   let ul = document.querySelector('ul')
   //this liArray is to know whether or not there are exisiting li's and to iterate 
