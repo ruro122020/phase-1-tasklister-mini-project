@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
   e.preventDefault()
   let task = document.getElementById('new-task-description')
   let submit = document.querySelector('#create-task-form #submit input')
-
+  let form = document.querySelector('form')
   let ul = document.querySelector('ul')
   //this liArray is to know whether or not there are exisiting li's and to iterate 
   //through them to know what number id to set the new li element to when a task is 
   //added to the todo list
   let liArray = []
 
-  submit.addEventListener('click', (e)=>{
+  form.addEventListener('submit', (e)=>{
     //each li has to have it's own id number
     e.preventDefault()
     let count = 1
